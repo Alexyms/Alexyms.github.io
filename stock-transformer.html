@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Transformer Portfolio System — Alex Moroz-Smietana</title>
+    <meta name="description" content="Multi-model transformer ensemble with LLM sentiment analysis and OSQP portfolio optimization. Full MBSE documentation with INCOSE traceability.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-name">AMS</a>
+            <div class="nav-links">
+                <a href="../#projects">Projects</a>
+                <a href="../#about">About</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <header class="project-hero">
+        <div class="container">
+            <a href="../#projects" class="project-hero-back">← Back to projects</a>
+            <h1 class="project-hero-title">Stock Transformer Portfolio System</h1>
+            <p class="project-hero-summary">A multi-model transformer ensemble with LLM-based sentiment analysis and quadratic portfolio optimization, documented end-to-end using INCOSE systems engineering methods.</p>
+            <div class="project-metrics-bar">
+                <div class="metric">
+                    <span class="metric-value">+29.6%</span>
+                    <span class="metric-label">Total Return</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">1.36</span>
+                    <span class="metric-label">Sharpe Ratio</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">-12.2%</span>
+                    <span class="metric-label">Max Drawdown</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">31</span>
+                    <span class="metric-label">Tickers · 10 Sectors</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">110</span>
+                    <span class="metric-label">Requirements Traced</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Body -->
+    <main class="project-body">
+        <div class="container">
+
+            <!-- Section: The Problem -->
+            <section class="project-section" id="problem">
+                <h2>The Problem</h2>
+                <p><em>Content coming — why stock prediction is hard, why OHLCV features degenerate, why external information (sentiment) is the only reliable edge.</em></p>
+            </section>
+
+            <!-- Section: System Architecture -->
+            <section class="project-section" id="architecture">
+                <h2>System Architecture</h2>
+                <p><em>Content coming — three-layer decomposition, Cameo BDD diagram, pipeline visualization.</em></p>
+
+                <div class="figure">
+                    <!-- Cameo BDD screenshot will go here -->
+                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
+                        [ System Architecture BDD — Cameo screenshot ]
+                    </div>
+                    <p class="figure-caption">System Architecture Block Definition Diagram — nested composition showing three-layer decomposition with strategy generalization hierarchy.</p>
+                </div>
+            </section>
+
+            <!-- Section: Key Technical Decisions -->
+            <section class="project-section" id="decisions">
+                <h2>Key Technical Decisions</h2>
+
+                <h3>Temporal Enforcement</h3>
+                <p><em>Content coming — look-ahead bias discovery, v1→v2 fix, 90pp return drop as proof, formal cross-cutting constraint.</em></p>
+
+                <div class="callout">
+                    <p class="callout-title">Decision</p>
+                    <p><em>Placeholder — temporal enforcement became a formal architectural constraint (REQ-RC-001.1) enforced structurally across every component, not by convention.</em></p>
+                </div>
+
+                <h3>OSQP over SLSQP</h3>
+                <p><em>Content coming — convex QP formulation, warm-starting, weekly covariance updates.</em></p>
+
+                <h3>Haiku over Sonnet for Sentiment Scoring</h3>
+                <p><em>Content coming — r=0.869 correlation validation, 10x cost reduction, 116K headlines for $26.</em></p>
+
+                <h3>Ensemble Architecture</h3>
+                <p><em>Content coming — three strategies per ticker, Sortino-weighted allocation, why OHLCV degenerates.</em></p>
+            </section>
+
+            <!-- Section: Results -->
+            <section class="project-section" id="results">
+                <h2>Results</h2>
+                <p><em>Content coming — equity curve vs SPY, portfolio weights over time, sector allocation, monthly returns table.</em></p>
+
+                <div class="figure">
+                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
+                        [ Equity curve chart — portfolio vs SPY vs equal-weight ]
+                    </div>
+                    <p class="figure-caption">Equity curve comparison over 284 test days (Jan 2025 – Feb 2026). Portfolio achieved +29.6% return vs SPY +19.3% with one-third the drawdown.</p>
+                </div>
+            </section>
+
+            <!-- Section: MBSE Documentation -->
+            <section class="project-section" id="mbse">
+                <h2>MBSE Documentation</h2>
+                <p><em>Content coming — traceability chain overview, temporal enforcement diagram, package explorer, novel application of SE methods to quantitative finance.</em></p>
+
+                <div class="figure">
+                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
+                        [ Temporal Enforcement Traceability — Cameo screenshot ]
+                    </div>
+                    <p class="figure-caption">Cross-cutting temporal enforcement constraint (REQ-RC-001.1) with satisfy dependencies converging from six architecture blocks.</p>
+                </div>
+            </section>
+
+            <!-- Section: Future Work -->
+            <section class="project-section" id="future">
+                <h2>What I'd Do Differently</h2>
+                <p><em>Content coming — state space models, centralized configuration, gaps revealed by retroactive MBSE, hyperparameter optimization.</em></p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-name">Alex Moroz-Smietana</p>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

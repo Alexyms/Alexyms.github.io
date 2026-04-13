@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Moroz-Smietana — Systems Engineering & Architecture</title>
+    <meta name="description" content="Systems engineer and architect. Director-level engineering leadership, MBSE, and complex system design.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-name">AMS</a>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-label">Systems Engineering · Architecture · Technical Leadership</p>
+                <h1 class="hero-title">Alex Moroz-Smietana</h1>
+                <p class="hero-subtitle">I design and build complex engineered systems — from architecture through verification. These projects document the reasoning, not just the results.</p>
+            </div>
+            <div class="hero-credentials">
+                <div class="credential">
+                    <span class="credential-value">12+</span>
+                    <span class="credential-label">Years Engineering</span>
+                </div>
+                <div class="credential">
+                    <span class="credential-value">M.Eng</span>
+                    <span class="credential-label">Systems · Cornell</span>
+                </div>
+                <div class="credential">
+                    <span class="credential-value">CSEP</span>
+                    <span class="credential-label">INCOSE Certified</span>
+                </div>
+                <div class="credential">
+                    <span class="credential-value">PMP</span>
+                    <span class="credential-label">Project Management</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-desc">Each project is documented end-to-end: problem framing, architecture decisions, implementation, and verification. The goal is to make the engineering judgment visible.</p>
+            </div>
+
+            <div class="project-grid">
+                <!-- Stock Transformer Card -->
+                <a href="projects/stock-transformer.html" class="project-card">
+                    <div class="card-tag">Systems Engineering · Machine Learning · Portfolio Optimization</div>
+                    <h3 class="card-title">Stock Transformer Portfolio System</h3>
+                    <p class="card-desc">Multi-model transformer ensemble with LLM sentiment analysis and quadratic portfolio optimization across 31 tickers. Full MBSE documentation with INCOSE traceability from stakeholder needs through verification.</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <span class="metric-value">+29.6%</span>
+                            <span class="metric-label">Return</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">1.36</span>
+                            <span class="metric-label">Sharpe</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">-12.2%</span>
+                            <span class="metric-label">Max DD</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">110</span>
+                            <span class="metric-label">Requirements</span>
+                        </div>
+                    </div>
+                    <span class="card-link">Read the full write-up →</span>
+                </a>
+
+                <!-- Placeholder for future projects -->
+                <div class="project-card project-card--upcoming">
+                    <div class="card-tag">Coming Soon</div>
+                    <h3 class="card-title">More projects in development</h3>
+                    <p class="card-desc">Additional projects spanning manufacturing systems, defense architectures, and applied research will be documented here as they reach completion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Systems engineer with 12+ years of experience across Tesla, Illumina, and early-stage startups. Currently completing a Master of Engineering in Systems Engineering at Cornell University.</p>
+                    <p>My core skill is translating across complexity boundaries — identifying system topology, mapping organizational interfaces, and making architecture decisions that hold up under real-world constraints. I work across the full V-model: stakeholder needs through requirements, design, implementation, and verification.</p>
+                    <p>These project write-ups exist because I believe engineering judgment should be visible. The reasoning behind a decision matters as much as the decision itself.</p>
+                </div>
+                <div class="about-certs">
+                    <h3 class="about-certs-title">Credentials</h3>
+                    <ul class="cert-list">
+                        <li>M.Eng Systems Engineering — Cornell University</li>
+                        <li>B.S. Physics — UC San Diego</li>
+                        <li>INCOSE CSEP (Certified Systems Engineering Professional)</li>
+                        <li>PMP (Project Management Professional)</li>
+                        <li>OCSMP (OMG Certified Systems Modeling Professional)</li>
+                        <li>Six Sigma Black Belt</li>
+                        <li>HBS Strategic Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-name">Alex Moroz-Smietana</p>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:" >Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
