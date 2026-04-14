@@ -97,24 +97,20 @@
                 <p>That's not what happened. The NYC taxi network begins fragmenting almost immediately. The median edge weight across all zone pairs is just 2 trips per month. Most connections are gossamer-thin, and they vanish the moment you demand even modest service levels. There is no dramatic cliff, just a steady erosion of connectivity that begins at the very first threshold.</p>
                 <p>This means the original question, 'at what threshold does the network break?', turned out to be the wrong question. The network was never well-connected enough to break dramatically. Instead, the more informative framing is differential vulnerability: how does each borough's connectivity degrade as the service standard increases, and who loses access first?</p>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Interactive map — morning rush, theta = 1: full connectivity ]
-                    </div>
+                    <img src="../assets/images/taxi_map_morning_theta1.png" alt="NYC taxi zone map during morning rush with threshold of 1 trip showing near-full connectivity">
+                    <p class="figure-caption">Morning rush (08:00-10:00), threshold = 1 trip per month. At the lowest service bar, nearly every borough is well-connected. Manhattan 96%, Brooklyn 98%, Queens 94%, Bronx 91%. Bright zones are in the Giant Strongly Connected Component. Faded zones are disconnected.</p>
                 </div>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Interactive map — morning rush, theta = 10: borough inequality visible ]
-                    </div>
+                    <img src="../assets/images/taxi_map_morning_theta5.png" alt="NYC taxi zone map during morning rush with threshold of 5 trips showing outer borough fragmentation beginning">
+                    <p class="figure-caption">Same time window, threshold raised to 5 trips per month. The only change is the service standard, and the network is already fracturing. Manhattan holds at 88%, but Brooklyn drops to 49%, Queens to 35%, and the Bronx to 16%. The fading zones are losing their connection to the rest of the network.</p>
                 </div>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Interactive map — evening, theta = 10: directional asymmetry ]
-                    </div>
+                    <img src="../assets/images/taxi_map_morning_theta10.png" alt="NYC taxi zone map during morning rush with threshold of 10 trips showing severe outer borough disconnection">
+                    <p class="figure-caption">Same time window, threshold at 10 trips per month (roughly one trip every three days). Manhattan retains 83% connectivity. The Bronx drops to 0%. Brooklyn to 8%. Queens holds at 17%, largely due to JFK Airport traffic. The same service standard that keeps Manhattan connected leaves three boroughs effectively cut off.</p>
                 </div>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Interactive map — late night, theta = 10: maximum vulnerability ]
-                    </div>
+                    <img src="../assets/images/taxi_map_latenight_theta5.png" alt="NYC taxi zone map during late night hours with threshold of 5 trips showing widespread vulnerability">
+                    <p class="figure-caption">Late night (02:00-04:00), threshold = 5 trips. Even at the moderate service bar where the morning network was still partially intact, late night connectivity collapses across all boroughs. This is the temporal dimension: where you are matters, but when you need a taxi matters just as much.</p>
                 </div>
             </section>
 
