@@ -661,6 +661,17 @@ a.project-card:hover .card-link {
 
 
 /* ============================================
+   CHORD PAIR (side-by-side figures)
+   ============================================ */
+
+.chord-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 
@@ -672,7 +683,7 @@ a.project-card:hover .card-link {
     }
 
     .chord-pair {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr;
     }
 
     .hero-credentials {
