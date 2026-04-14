@@ -671,6 +671,10 @@ a.project-card:hover .card-link {
         --text-2xl: 1.5rem;
     }
 
+    .chord-pair {
+        grid-template-columns: 1fr !important;
+    }
+
     .hero-credentials {
         gap: var(--space-lg);
     }

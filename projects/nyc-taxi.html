@@ -124,6 +124,10 @@
                     <iframe src="../assets/interactive/force_directed_network.html" style="width: 100%; height: 600px; border: none; border-radius: 4px;"></iframe>
                     <p class="figure-caption">Interactive force-directed network of NYC taxi zones. Node size reflects criticality score. Node color indicates borough. Solid nodes are in the Giant SCC, faded nodes are outside it. Drag nodes to explore the network structure.</p>
                 </div>
+                <div class="figure">
+                    <img src="../assets/images/taxi_borough_connectivity.png" alt="Heatmap showing borough connectivity fraction across time windows, Manhattan consistently green, outer boroughs red">
+                    <p class="figure-caption">Borough connectivity throughout the day at theta = 5. Each cell shows the fraction of a borough's zones that remain in the connected core. Manhattan (top row) stays above 80% at all hours. The Bronx barely registers. The color gradient tells the entire equity story at a glance.</p>
+                </div>
             </section>
 
             <!-- Section: The Taxi Home Effect -->
@@ -132,11 +136,15 @@
                 <p>Perhaps the most striking finding is a massive directional asymmetry in evening taxi flows. During morning hours, taxi flows are relatively balanced and multi-directional. But come evening, the pattern transforms: flows become overwhelmingly one-directional, pouring out of Manhattan into the outer boroughs. Brooklyn sees Manhattan-to-Brooklyn trips outnumber the reverse at a ratio of up to 192 to 1.</p>
                 <p>New Yorkers in the outer boroughs commute to Manhattan by subway and bus in the morning, but when the workday ends, or after dinner, or after a show, they take a cab back. The taxi network isn't competing with transit for the morning commute. It's filling a different role entirely, serving as return transportation for the evening.</p>
                 <p>This has a cascading effect on morning connectivity. Taxis accumulate in outer boroughs overnight, following their evening passengers. But the next morning's demand originates in Manhattan, creating a spatial mismatch that likely contributes to the outer boroughs' weaker morning service.</p>
-                <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Chord diagram — morning inter-borough flows ]
+                <div class="chord-pair" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="figure">
+                        <img src="../assets/images/chord_diagram_morning.png" alt="Chord diagram showing morning inter-borough taxi flows with balanced multi-directional patterns">
+                        <p class="figure-caption">Morning (06:00-08:00). Flows are multi-directional. Multiple boroughs send and receive trips in varied patterns.</p>
                     </div>
-                    <p class="figure-caption">Chord diagram showing morning inter-borough taxi flows.</p>
+                    <div class="figure">
+                        <img src="../assets/images/chord_diagram_evening.png" alt="Chord diagram showing evening inter-borough taxi flows dominated by Manhattan outbound">
+                        <p class="figure-caption">Evening (18:00-20:00). Manhattan's blue chords dominate, pouring outbound into every borough. This is the 'taxi home' effect: people take cabs home from Manhattan but commute in by subway.</p>
+                    </div>
                 </div>
             </section>
 
