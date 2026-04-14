@@ -512,6 +512,9 @@ a.project-card:hover .card-link {
     font-family: var(--font-display);
     font-size: var(--text-sm);
     color: var(--text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     transition: color var(--transition-fast);
 }
 
