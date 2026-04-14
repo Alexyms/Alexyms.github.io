@@ -54,6 +54,53 @@
 //  but this adds offset for fixed nav)
 // ============================================
 
+// ============================================
+// LIGHTBOX
+// ============================================
+
+(function() {
+    var overlay = null;
+
+    function open(img) {
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'lightbox-overlay';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', close);
+        }
+        overlay.innerHTML = '';
+        var clone = document.createElement('img');
+        clone.src = img.src;
+        clone.alt = img.alt;
+        overlay.appendChild(clone);
+        overlay.style.display = 'flex';
+        // Force reflow so the transition triggers
+        overlay.offsetHeight;
+        overlay.classList.add('is-visible');
+    }
+
+    function close() {
+        if (overlay) {
+            overlay.classList.remove('is-visible');
+            overlay.addEventListener('transitionend', function handler() {
+                overlay.style.display = 'none';
+                overlay.removeEventListener('transitionend', handler);
+            });
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'IMG' && e.target.closest('.figure')) {
+            open(e.target);
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+    });
+})();
+
+
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
         var target = document.querySelector(this.getAttribute('href'));
