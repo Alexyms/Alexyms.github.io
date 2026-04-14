@@ -130,10 +130,16 @@
                 <p>The risk-adjusted story matters more than the raw return. The portfolio beat SPY by 10 percentage points while cutting maximum drawdown by a third and nearly doubling the Sharpe ratio. During the Q1 2025 broad market downturn, SPY drew down roughly 15%. The portfolio drew down 12.2% over the same period and recovered faster, pulling ahead from May onward.</p>
                 <p>The optimizer's behavior confirms the architecture is working as designed. Tech hit the 25% sector cap on 249 of 284 days. This was during NVIDIA's well-documented run, meaning the optimizer consistently wanted more tech exposure but the constraint prevented concentration risk. SPY allocation peaked at 46% in June 2025 during an uncertain transition, then dropped to zero when confidence returned. Energy (0.9% average) and Real Estate (1.8% average) received near-zero allocation, consistent with weak specialist accuracy on those tickers. Genuine sector rotation is visible across Healthcare, Industrial, Defense, Financials, and Logistics depending on the period.</p>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Equity curve chart — portfolio vs SPY vs equal-weight ]
-                    </div>
+                    <img src="../assets/images/portfolio_equity_curves.png" alt="Portfolio equity curves showing optimized portfolio vs SPY vs equal-weight vs cash over 284 test days">
                     <p class="figure-caption">Equity curve comparison over 284 test days (January 2025 through February 2026). Portfolio achieved +29.6% return vs SPY +19.3% with significantly lower drawdown and higher risk-adjusted returns.</p>
+                </div>
+                <div class="figure">
+                    <img src="../assets/images/portfolio_monthly_heatmap.png" alt="Monthly sector allocation heatmap showing portfolio weight distribution across 10 sectors, SPY, and Cash">
+                    <p class="figure-caption">Monthly sector allocation showing optimizer behavior: Tech consistently near the 25% cap, SPY used as uncertainty buffer peaking at 46% in June 2025, and genuine rotation across Healthcare, Industrial, Defense, and Logistics.</p>
+                </div>
+                <div class="figure">
+                    <img src="../assets/images/portfolio_weight_evolution.png" alt="Portfolio sector allocation over time showing daily weight changes across all sectors">
+                    <p class="figure-caption">Daily sector allocation over the full test period. The stacked view shows how the optimizer shifts capital between sectors as sentiment signals evolve.</p>
                 </div>
             </section>
 
