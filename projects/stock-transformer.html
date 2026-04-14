@@ -77,20 +77,27 @@
             <!-- Section: The Problem -->
             <section class="project-section" id="problem">
                 <h2>The Problem</h2>
-                <p><em>Content coming — why stock prediction is hard, why OHLCV features degenerate, why external information (sentiment) is the only reliable edge.</em></p>
+                <p>Most approaches to stock prediction treat it as a pattern recognition problem: feed historical price data into a model, find the signal. Five development phases revealed why this framing fails in practice.</p>
+                <p>The model trains on historical data where the dominant regime was a multi-year bull market (2021–2024). Features derived from Open, High, Low, Close, and Volume (OHLCV) data like momentum indicators, moving averages, Bollinger bands, and volatility learn that "up" is the statistically dominant outcome and collapse to predicting it every single day. When you try to correct for that, the model rails to the opposite extreme and sits in cash or sells everything. It's not learning market dynamics. It's memorizing regime-specific statistics and hitting the nearest boundary.</p>
+                <p>The only reliable predictive edge comes from external information. Large Language Model (LLM) scored news sentiment captures events the market is still processing: tariff announcements, earnings surprises, regulatory decisions. This signal generalizes across regimes because it measures something the price history doesn't contain yet. This isn't a minor improvement. It's the difference between a system that works and one that doesn't. The architecture, optimization, and documentation that follow all stem from this finding.</p>
             </section>
 
             <!-- Section: System Architecture -->
             <section class="project-section" id="architecture">
                 <h2>System Architecture</h2>
-                <p><em>Content coming — three-layer decomposition, Cameo BDD diagram, pipeline visualization.</em></p>
-
+                <p>The system decomposes into three layers, each solving a distinct problem at a different scale.</p>
+                <h3>Layer 1: Signal Generation</h3>
+                <p>Runs independently per ticker. For each of 31 tickers, a three-strategy ensemble generates daily position signals: a moving average crossover for trend following, Bollinger band reversion for mean reversion, and a trained transformer specialist (~26K parameters) consuming LLM-scored sentiment features. A Sortino-weighted rolling allocator dynamically weights these strategies based on recent risk-adjusted performance. Strategies that degenerate get zero weight automatically through the Sortino floor and circuit breaker mechanism.</p>
+                <h3>Layer 2: Signal Selection</h3>
+                <p>Operates across all tickers simultaneously. An Operator Splitting Quadratic Program (OSQP) optimizer allocates capital across 31 active tickers plus SPY (the S&amp;P 500 ETF used as a benchmark) and Cash (risk-free), maximizing expected excess return over SPY minus a risk penalty minus turnover cost. Sector caps (25% per sector across 10 sectors), SPY cap (50%), and full-allocation constraints are all linear inequalities, keeping the problem strictly convex with no post-hoc approximations.</p>
+                <h3>Layer 3: Portfolio Simulation</h3>
+                <p>Applies the optimizer's daily weights to realized returns, charges two layers of transaction costs (per-ticker trading costs in Layer 1, portfolio rebalancing costs in Layer 3, no double-counting), and computes performance metrics against multiple baselines.</p>
+                <p>The key architectural decision is the separation between signal generation and signal selection. Individual ticker models don't need to be individually profitable. The optimizer's job is to identify which signals to trust on which days and allocate capital accordingly. This is where portfolio value comes from: not better predictions per ticker, but better capital allocation across the full universe.</p>
                 <div class="figure">
-                    <!-- Cameo BDD screenshot will go here -->
                     <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
                         [ System Architecture BDD — Cameo screenshot ]
                     </div>
-                    <p class="figure-caption">System Architecture Block Definition Diagram — nested composition showing three-layer decomposition with strategy generalization hierarchy.</p>
+                    <p class="figure-caption">System Architecture Block Definition Diagram showing three-layer decomposition with strategy generalization hierarchy. Built in Cameo Systems Modeler using SysML v2 (Systems Modeling Language).</p>
                 </div>
             </section>
 
@@ -98,54 +105,65 @@
             <section class="project-section" id="decisions">
                 <h2>Key Technical Decisions</h2>
 
-                <h3>Temporal Enforcement</h3>
-                <p><em>Content coming — look-ahead bias discovery, v1→v2 fix, 90pp return drop as proof, formal cross-cutting constraint.</em></p>
-
+                <h3>Temporal Enforcement: From Bug to Architectural Constraint</h3>
+                <p>During the 31-ticker expansion, the system reported +119.6% return with a 5.50 Sharpe ratio. Numbers that were immediately suspicious. Investigation revealed look-ahead bias in two locations: the portfolio optimizer's rolling covariance window used inclusive indexing (<code>.loc[:date]</code>), letting the optimizer see today's realized return when computing today's allocation, and all three strategy classes used <code>data.index &lt;= date</code>, letting signals incorporate today's close price.</p>
+                <p>The fix changed two characters: <code>&lt;=</code> to <code>&lt;</code>. Returns dropped 90 percentage points, from +119.6% to +29.6%. The same bugs existed in Phase 4 but were invisible at 6-ticker scale where +18% return looked plausible. At 31 tickers, the optimizer had enough candidates to cherry-pick from that the bias amplified dramatically.</p>
                 <div class="callout">
-                    <p class="callout-title">Decision</p>
-                    <p><em>Placeholder — temporal enforcement became a formal architectural constraint (REQ-RC-001.1) enforced structurally across every component, not by convention.</em></p>
+                    <p class="callout-title">Architectural Decision</p>
+                    <p>Rather than treat this as a one-time bug fix, it became a formal cross-cutting architectural constraint (REQ-RC-001.1): temporal enforcement must be structural, embedded in data access patterns, not procedural. Six architecture blocks carry satisfy dependencies to this single requirement. The constraint was designed so that a new component physically cannot access future data if it follows the established interface pattern.</p>
                 </div>
 
-                <h3>OSQP over SLSQP</h3>
-                <p><em>Content coming — convex QP formulation, warm-starting, weekly covariance updates.</em></p>
+                <h3>OSQP over SLSQP: Scaling the Optimizer</h3>
+                <p>Phase 4 used scipy's Sequential Least Squares Quadratic Programming (SLSQP) solver for 6 tickers with 24 optimization variables. The 31-ticker expansion pushed this to 99 variables (33 positions times 3: weights, buy amounts, sell amounts, with turnover decomposed to maintain convexity). OSQP was selected for three properties: native warm-starting with KKT factorization reuse, strict convex Quadratic Programming (QP) guarantees, and the ability to update the covariance matrix weekly while updating expected returns daily. This matches the financial reality. Covariance structure shifts slowly while return expectations update with each day's data.</p>
 
-                <h3>Haiku over Sonnet for Sentiment Scoring</h3>
-                <p><em>Content coming — r=0.869 correlation validation, 10x cost reduction, 116K headlines for $26.</em></p>
+                <h3>Haiku over Sonnet for Sentiment Scoring: Cost-Benefit Engineering</h3>
+                <p>The system needed 116,000+ headlines scored across 31 tickers. A validation study scored a sample with both Claude Haiku and Claude Sonnet, yielding r=0.869 correlation. Haiku completed the full scoring run in 2 hours for $26. The Sonnet estimate was $260+ for negligible accuracy improvement. This 10x cost reduction with validated quality preservation is the kind of engineering tradeoff that matters at scale, and the validation methodology (correlation analysis before committing spend) is documented as part of the verification chain.</p>
 
-                <h3>Ensemble Architecture</h3>
-                <p><em>Content coming — three strategies per ticker, Sortino-weighted allocation, why OHLCV degenerates.</em></p>
+                <h3>Ensemble Architecture: Designing for Rotation</h3>
+                <p>In the current system, OHLCV-based strategies consistently degenerate and carry zero weight. The sentiment specialist carries all signal. So why keep the ensemble? Because the architecture is designed for the 31-ticker universe, not any single ticker. Across different sectors and market conditions, different strategy types may carry signal on different tickers. The Sortino-weighted allocator automatically discovers which strategies contribute and suppresses those that don't. No manual intervention required. The ensemble is the mechanism that makes the system extensible without retraining the allocation logic.</p>
             </section>
 
             <!-- Section: Results -->
             <section class="project-section" id="results">
                 <h2>Results</h2>
-                <p><em>Content coming — equity curve vs SPY, portfolio weights over time, sector allocation, monthly returns table.</em></p>
-
+                <p>Over 284 test days (January 2025 through February 2026), the optimized portfolio returned +29.6% with a 1.36 Sharpe ratio and -12.2% maximum drawdown. SPY returned +19.3% over the same period with a 0.66 Sharpe and -18.8% maximum drawdown. The equal-weight monthly baseline returned +10.7%.</p>
+                <p>The risk-adjusted story matters more than the raw return. The portfolio beat SPY by 10 percentage points while cutting maximum drawdown by a third and nearly doubling the Sharpe ratio. During the Q1 2025 broad market downturn, SPY drew down roughly 15%. The portfolio drew down 12.2% over the same period and recovered faster, pulling ahead from May onward.</p>
+                <p>The optimizer's behavior confirms the architecture is working as designed. Tech hit the 25% sector cap on 249 of 284 days. This was during NVIDIA's well-documented run, meaning the optimizer consistently wanted more tech exposure but the constraint prevented concentration risk. SPY allocation peaked at 46% in June 2025 during an uncertain transition, then dropped to zero when confidence returned. Energy (0.9% average) and Real Estate (1.8% average) received near-zero allocation, consistent with weak specialist accuracy on those tickers. Genuine sector rotation is visible across Healthcare, Industrial, Defense, Financials, and Logistics depending on the period.</p>
                 <div class="figure">
                     <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
                         [ Equity curve chart — portfolio vs SPY vs equal-weight ]
                     </div>
-                    <p class="figure-caption">Equity curve comparison over 284 test days (Jan 2025 – Feb 2026). Portfolio achieved +29.6% return vs SPY +19.3% with one-third the drawdown.</p>
+                    <p class="figure-caption">Equity curve comparison over 284 test days (January 2025 through February 2026). Portfolio achieved +29.6% return vs SPY +19.3% with significantly lower drawdown and higher risk-adjusted returns.</p>
                 </div>
             </section>
 
             <!-- Section: MBSE Documentation -->
             <section class="project-section" id="mbse">
                 <h2>MBSE Documentation</h2>
-                <p><em>Content coming — traceability chain overview, temporal enforcement diagram, package explorer, novel application of SE methods to quantitative finance.</em></p>
-
+                <p>This project applies International Council on Systems Engineering (INCOSE) Model-Based Systems Engineering (MBSE) methods to a quantitative finance software system. This cross-disciplinary application is deliberate: SE methods are well-established in aerospace and defense but rarely applied to software-only systems, and essentially never to quantitative finance. The documentation demonstrates that the methodology transfers, and that it reveals architectural risks that weren't visible during development.</p>
+                <p>The traceability chain follows the full V-model. Seven stakeholders with 47 documented needs decompose into 110 derived technical requirements and 17 system constraints, each traced forward to implementing architecture blocks and verification evidence.</p>
+                <p>The Cameo SysML v2 model contains the full package hierarchy: stakeholder packages, requirements with priority and implementation status metadata, 17 architecture block definitions with 51 typed attributes, a strategy generalization hierarchy (abstract Strategy specializing to MACrossover, BollingerBands, and TransformerSpecialist), and 106 satisfy relationships linking blocks to requirements.</p>
+                <p>The most valuable output of the retroactive MBSE process was identifying cross-cutting consistency risks invisible during development. Parameters like <code>risk_free_rate</code>, <code>transaction_cost</code>, and temporal cutoff dates must be synchronized across multiple modules with no enforcement mechanism. The constraint CON-SO-002.1 (ticker and sector additions must not require code changes) is formally violated: adding a single ticker currently requires editing at least four source files. These gaps are precisely what the traceability discipline is designed to surface.</p>
                 <div class="figure">
                     <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
                         [ Temporal Enforcement Traceability — Cameo screenshot ]
                     </div>
-                    <p class="figure-caption">Cross-cutting temporal enforcement constraint (REQ-RC-001.1) with satisfy dependencies converging from six architecture blocks.</p>
+                    <p class="figure-caption">Cross-cutting temporal enforcement constraint (REQ-RC-001.1) with satisfy dependencies converging from six architecture blocks. Built in Cameo Systems Modeler using SysML v2.</p>
                 </div>
             </section>
 
             <!-- Section: Future Work -->
             <section class="project-section" id="future">
-                <h2>What I'd Do Differently</h2>
-                <p><em>Content coming — state space models, centralized configuration, gaps revealed by retroactive MBSE, hyperparameter optimization.</em></p>
+                <h2>What I'd Do Next</h2>
+                <p>These are scope boundaries that were set deliberately to keep the project focused, not gaps or regrets. Each one represents a natural next phase of development.</p>
+                <h3>Centralized Configuration</h3>
+                <p>The highest-impact architectural improvement would be consolidating parameters scattered across modules into a single configuration source. Risk-free rate appears in the optimizer, allocator, and backtester with no enforcement that they match. Transaction cost, temporal boundaries, and sector mappings are similarly distributed. This was a known simplification from the start. The MBSE traceability process confirmed it as the top architectural gap.</p>
+                <h3>Regime Detection</h3>
+                <p>The current system has no explicit awareness of bear vs. bull market conditions. Adding a state space model for longer-sequence regime detection would allow the allocator to adjust strategy weights based on detected market state rather than purely trailing Sortino performance. This was deferred to keep the initial architecture focused on the core signal generation and selection problem.</p>
+                <h3>Per-Ticker Hyperparameter Tuning</h3>
+                <p>The 31 transformer specialists were trained with identical hyperparameters. Given the variation in specialist accuracy across tickers (RTX at 0.630 vs. O at 0.374), per-ticker tuning is likely lower-hanging fruit than adding new model architectures. Standardized hyperparameters were a deliberate choice to isolate the effect of the sentiment signal without introducing a tuning confound.</p>
+                <h3>Automated Temporal Validation</h3>
+                <p>The look-ahead bias fix is structurally enforced, but there is no end-to-end pipeline test that validates it. A regression test injecting known future data and verifying it doesn't leak into decisions would close this gap permanently. Adding this test was deferred in favor of completing the MBSE documentation chain.</p>
             </section>
 
         </div>
