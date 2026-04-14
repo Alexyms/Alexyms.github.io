@@ -745,6 +745,12 @@ a.project-card:hover .card-link {
     opacity: 1;
 }
 
+.interactive-map-link:hover {
+    background-color: var(--accent);
+    color: var(--text-inverse);
+}
+
+
 .lightbox-overlay img {
     max-width: 90vw;
     max-height: 90vh;
