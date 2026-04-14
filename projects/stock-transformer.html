@@ -94,9 +94,7 @@
                 <p>Applies the optimizer's daily weights to realized returns, charges two layers of transaction costs (per-ticker trading costs in Layer 1, portfolio rebalancing costs in Layer 3, no double-counting), and computes performance metrics against multiple baselines.</p>
                 <p>The key architectural decision is the separation between signal generation and signal selection. Individual ticker models don't need to be individually profitable. The optimizer's job is to identify which signals to trust on which days and allocate capital accordingly. This is where portfolio value comes from: not better predictions per ticker, but better capital allocation across the full universe.</p>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ System Architecture BDD — Cameo screenshot ]
-                    </div>
+                    <img src="../assets/images/system_architecture_bdd.png" alt="SysML v2 Block Definition Diagram showing three-layer system architecture with nested composition and strategy generalization hierarchy">
                     <p class="figure-caption">System Architecture Block Definition Diagram showing three-layer decomposition with strategy generalization hierarchy. Built in Cameo Systems Modeler using SysML v2 (Systems Modeling Language).</p>
                 </div>
             </section>
@@ -151,10 +149,12 @@
                 <p>The Cameo SysML v2 model contains the full package hierarchy: stakeholder packages, requirements with priority and implementation status metadata, 17 architecture block definitions with 51 typed attributes, a strategy generalization hierarchy (abstract Strategy specializing to MACrossover, BollingerBands, and TransformerSpecialist), and 106 satisfy relationships linking blocks to requirements.</p>
                 <p>The most valuable output of the retroactive MBSE process was identifying cross-cutting consistency risks invisible during development. Parameters like <code>risk_free_rate</code>, <code>transaction_cost</code>, and temporal cutoff dates must be synchronized across multiple modules with no enforcement mechanism. The constraint CON-SO-002.1 (ticker and sector additions must not require code changes) is formally violated: adding a single ticker currently requires editing at least four source files. These gaps are precisely what the traceability discipline is designed to surface.</p>
                 <div class="figure">
-                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: var(--font-display); font-size: var(--text-sm);">
-                        [ Temporal Enforcement Traceability — Cameo screenshot ]
-                    </div>
+                    <img src="../assets/images/temporal_enforcement_traceability.png" alt="SysML v2 traceability diagram showing six architecture blocks satisfying the cross-cutting temporal enforcement requirement REQ-RC-001.1">
                     <p class="figure-caption">Cross-cutting temporal enforcement constraint (REQ-RC-001.1) with satisfy dependencies converging from six architecture blocks. Built in Cameo Systems Modeler using SysML v2.</p>
+                </div>
+                <div class="figure">
+                    <img src="../assets/images/package_explorer.png" alt="Cameo SysML v2 Package Explorer showing full model hierarchy with packages, part definitions, typed attributes, and satisfy relationships">
+                    <p class="figure-caption">Cameo SysML v2 Package Explorer showing model hierarchy: architecture packages with part definitions, typed attributes, documentation, and satisfy relationships linking blocks to requirements.</p>
                 </div>
             </section>
 
