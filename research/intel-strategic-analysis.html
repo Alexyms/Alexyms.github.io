@@ -157,6 +157,21 @@
                 padding-left: 1rem;
             }
         }
+
+        /* Dark panel for complex data visualizations (e.g., Sankey) —
+           stays dark in both themes so the chart's internal dark background
+           reads as intentional rather than a theme mismatch */
+        .research-figure .figure-dark-panel {
+            background: #141413;
+            padding: 1.5rem 1.25rem;
+            border-radius: 6px;
+            margin: 0;
+        }
+        .research-figure .figure-dark-panel img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -422,11 +437,26 @@
             </style>
 
             <p>
+                Extending the VRIN view to the full semiconductor value chain made Intel's structural position visible at a glance. Every other major participant's presence in the industry broke somewhere along the chain. Intel's did not.
+            </p>
+
+            <!-- FIGURE 3: Semiconductor value chain Sankey -->
+            <figure class="research-figure" id="figure-3">
+                <div class="figure-dark-panel">
+                    <img src="../assets/images/semiconductor_value_chain_sankey.png"
+                         alt="Sankey diagram of the semiconductor value chain showing flows from foundries through product types to chip designers to end markets, with Intel as the only company whose flow runs uninterrupted across all four layers">
+                </div>
+                <figcaption class="figure-caption">
+                    <strong>Figure 3</strong>Semiconductor value chain flows, 2024. Colored flows show revenue movement from foundries (left) through product types and chip designers to end markets (right). Intel (blue) is the only participant whose flow runs uninterrupted across all four layers. TSMC (red) stops at foundry. NVIDIA (green) begins at chip design with no foundry presence. Apple (gray) consumes its silicon in its own devices. GlobalFoundries operates at trailing-edge foundry only. Source: constructed from FY2024 financial filings and Mercury Research 2025 market share estimates.
+                </figcaption>
+            </figure>
+
+            <p>
                 None of these resources were being coordinated. The business units operated as separate P&amp;Ls, each optimizing locally. The GPU effort was disconnected from the CPU franchise. The foundry was being treated as a cost center rather than a strategic asset. Intel was underutilizing its own abilities and resources in AI. NVIDIA had built a strong, coherent GPU system — hardware plus a complete software ecosystem — and Intel had not built an equivalent. The missing piece was ecosystem integration: tying Intel's CPU footprint, advanced packaging, and accelerator hardware into a developer-facing platform with the library depth and deployment tooling that makes an AI ecosystem stick. NVIDIA had done exactly that through Compute Unified Device Architecture (CUDA), developer tools, and fifteen years of ecosystem lock-in.
             </p>
 
-            <!-- FIGURE 3: Strategic Group Map (matches deck slide 6) -->
-            <figure class="research-figure" id="figure-3">
+            <!-- FIGURE 4: Strategic Group Map (matches deck slide 6) -->
+            <figure class="research-figure" id="figure-4">
                 <div class="svg-frame">
                     <svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategic group map showing positioning of Intel, NVIDIA, AMD, Qualcomm, and Apple across AI focus and cloud-to-edge orientation">
                         <!-- Background -->
@@ -473,7 +503,7 @@
                     </svg>
                 </div>
                 <figcaption class="figure-caption">
-                    <strong>Figure 3</strong>Strategic group map across two dimensions: AI focus (low to high) and cloud-to-edge orientation. NVIDIA concentrated cloud-side with the highest AI focus, its CUDA ecosystem effectively closing off that quadrant. Intel sat in the middle of the map with relatively low AI focus, stranded between where it had historically been strong (edge/client CPUs) and where value was migrating (cloud AI). Framework: Thompson et al. (2024), Ch. 3. Sources: IDC (2024), Mercury Research (2025).
+                    <strong>Figure 4</strong>Strategic group map across two dimensions: AI focus (low to high) and cloud-to-edge orientation. NVIDIA concentrated cloud-side with the highest AI focus, its CUDA ecosystem effectively closing off that quadrant. Intel sat in the middle of the map with relatively low AI focus, stranded between where it had historically been strong (edge/client CPUs) and where value was migrating (cloud AI). Framework: Thompson et al. (2024), Ch. 3. Sources: IDC (2024), Mercury Research (2025).
                 </figcaption>
             </figure>
 
@@ -501,8 +531,8 @@
                 <strong>Third, on CPUs.</strong> Value is migrating from standalone components to system-level platforms. Intel needed to embed its CPUs into rack-scale solutions, establish multi-year platform commitments with key accounts, and raise switching costs through integration rather than contracts. The goal: zero cliff defections from major customers in a twelve to twenty-four month window.
             </p>
 
-            <!-- FIGURE 4: Value migration (matches deck slide 12) -->
-            <figure class="research-figure" id="figure-4">
+            <!-- FIGURE 5: Value migration (matches deck slide 12) -->
+            <figure class="research-figure" id="figure-5">
                 <div class="svg-frame">
                     <svg viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Value migration diagram showing CPU-dominated value pool in the prior era shifting to a dispersed value pool across CPU, AI accelerators, custom silicon, and system integration in the current era">
                         <rect x="0" y="0" width="760" height="460" class="bg"/>
@@ -553,7 +583,7 @@
                     </svg>
                 </div>
                 <figcaption class="figure-caption">
-                    <strong>Figure 4</strong>Value migration in compute. In the prior era, the CPU captured the dominant share of system-level value and Intel's integrated position dominated that pool. In the current era, value has dispersed across AI accelerators, custom silicon from hyperscalers, and system-level integration, leaving the standalone CPU as one pool among several. Intel retained structural access to multiple of the new value pools — if it could organize to capture them.
+                    <strong>Figure 5</strong>Value migration in compute. In the prior era, the CPU captured the dominant share of system-level value and Intel's integrated position dominated that pool. In the current era, value has dispersed across AI accelerators, custom silicon from hyperscalers, and system-level integration, leaving the standalone CPU as one pool among several. Intel retained structural access to multiple of the new value pools — if it could organize to capture them.
                 </figcaption>
             </figure>
 
