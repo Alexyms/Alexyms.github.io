@@ -23,6 +23,12 @@
     --border: #E2E1DB;
     --border-light: #ECEAE4;
 
+    /* Aliases for research article inline styles */
+    --bg: #FAFAF7;
+    --text: #1A1A18;
+    --text-muted: #5C5C56;
+    --accent-wash: rgba(43, 92, 58, 0.06);
+
     --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
     --shadow-md: 0 4px 12px rgba(26, 26, 24, 0.06);
     --shadow-lg: 0 8px 30px rgba(26, 26, 24, 0.08);
@@ -81,6 +87,12 @@
 
     --border: #2A2A28;
     --border-light: #222220;
+
+    /* Aliases for research article inline styles */
+    --bg: #141413;
+    --text: #EDEDEA;
+    --text-muted: #A3A39D;
+    --accent-wash: rgba(90, 174, 114, 0.08);
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -328,7 +340,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: var(--space-3xl) 0;
 }
 
-.project-grid {
+.project-grid,
+.research-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-lg);
@@ -431,34 +444,6 @@ a.project-card:hover .card-link {
 .research {
     padding: var(--space-3xl) 0;
     border-top: 1px solid var(--border-light);
-}
-
-.research-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-}
-
-.research-card {
-    display: block;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--border-radius);
-    padding: var(--space-xl);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-    color: var(--text-primary);
-}
-
-a.research-card:hover {
-    border-color: var(--accent);
-    box-shadow: var(--shadow-md);
-    background: var(--bg-card-hover);
-    color: var(--text-primary);
-}
-
-.research-card--upcoming {
-    border-style: dashed;
-    opacity: 0.6;
 }
 
 .card-tag-row {
