@@ -3,99 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intel's Strategic Inflection Point — Alex Moroz-Smietana</title>
-    <meta name="description" content="Strategic analysis of Intel's competitive positioning, foundry strategy, and IDM 2.0 transformation.">
+    <meta name="description" content="Strategic analysis of Intel's competitive positioning, foundry strategy, and organizational architecture. Diagnosis built for Harvard Business School Strategic Management coursework in January 2025; validated by subsequent organizational restructuring under Lip-Bu Tan.">
+    <title>Intel's Strategic Inflection Point | Alex Moroz-Smietana</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="shortcut icon" href="../favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Page-specific styles — use CSS variables so they track light/dark theme from style.css */
+
+        /* Figures */
+        .research-figure {
+            margin: 3rem 0;
+        }
+        .research-figure table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Literata', Georgia, serif;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border, #d9d9d3);
+            border-bottom: 1px solid var(--border, #d9d9d3);
+        }
+        .research-figure thead th {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-align: left;
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--border, #d9d9d3);
+            color: var(--text-muted, #666);
+        }
+        .research-figure tbody td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-light, #ececea);
+            vertical-align: top;
+        }
+        .research-figure tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .research-figure tbody td.label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+        }
+        .research-figure tbody td.num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        .research-figure tbody td.check {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent, #2B5C3A);
+            font-weight: 500;
+        }
+        .research-figure tbody td.dash {
+            text-align: center;
+            color: var(--text-muted, #999);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .research-figure tbody tr.highlight td {
+            background: var(--accent-wash, rgba(43, 92, 58, 0.06));
+        }
+
+        /* SVG figure frames */
+        .svg-frame {
+            width: 100%;
+            max-width: 780px;
+            margin: 0 auto;
+            display: block;
+        }
+        .svg-frame svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Figure captions */
+        .research-figure .figure-caption {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-muted, #666);
+            margin-top: 0.9rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--border-light, #ececea);
+            letter-spacing: 0.02em;
+        }
+        .research-figure .figure-caption strong {
+            font-weight: 600;
+            color: var(--text, #1A1A18);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            margin-right: 0.5rem;
+        }
+
+        /* Small timing stamp on validation section */
+        .timing-note {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted, #666);
+            padding: 1rem 1.25rem;
+            border-left: 2px solid var(--accent, #2B5C3A);
+            background: var(--accent-wash, rgba(43, 92, 58, 0.04));
+            margin: 2rem 0;
+            line-height: 1.6;
+        }
+
+        /* Pull quote used for classroom anecdote */
+        .pull-quote {
+            font-family: 'Literata', Georgia, serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            border-left: 3px solid var(--accent, #2B5C3A);
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            margin: 2.5rem 0;
+            color: var(--text, #1A1A18);
+        }
+
+        /* Closing signature */
+        .thesis-held {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1.35rem;
+            letter-spacing: 0.02em;
+            color: var(--accent, #2B5C3A);
+            margin: 2.5rem 0 1rem 0;
+        }
+
+        /* SVG colors — use CSS vars so the diagrams respect theme */
+        .svg-frame .bg { fill: var(--bg, #FAFAF7); }
+        .svg-frame .ink { fill: var(--text, #1A1A18); }
+        .svg-frame .muted { fill: var(--text-muted, #666); }
+        .svg-frame .border { stroke: var(--border, #d9d9d3); }
+        .svg-frame .accent { fill: var(--accent, #2B5C3A); }
+        .svg-frame .accent-stroke { stroke: var(--accent, #2B5C3A); fill: none; }
+        .svg-frame .grid-line { stroke: var(--border-light, #ececea); }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .research-figure thead th,
+            .research-figure tbody td {
+                padding: 0.7rem 0.5rem;
+                font-size: 0.85rem;
+            }
+            .pull-quote {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="../" class="nav-name">AMS</a>
-            <div class="nav-links">
-                <a href="../#projects">Projects</a>
-                <a href="../#research">Research</a>
-                <a href="../#about">About</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+<!-- Nav -->
+<nav class="site-nav">
+    <div class="container nav-inner">
+        <a href="../" class="nav-brand">Alex Moroz-Smietana</a>
+        <ul class="nav-links">
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#research">Research</a></li>
+            <li><a href="../#about">About</a></li>
+            <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">◐</button></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<header class="project-hero">
+    <div class="container">
+        <a href="../#research" class="back-link">← Back</a>
+        <div class="hero-tag-row">
+            <span class="card-tag">Strategic Analysis</span>
+            <span class="card-date">January 2025 · Published January 2026</span>
+        </div>
+        <h1 class="project-title">Intel's Strategic Inflection Point</h1>
+        <p class="project-summary">
+            A diagnosis of Intel's competitive position built for Harvard Business School Strategic Management coursework. The financial picture in late 2024 looked like terminal decline. The underlying architecture told a different story: Intel had every resource it needed to compete. What it lacked was the organizational architecture to deploy those resources for competitive advantage.
+        </p>
+    </div>
+</header>
+
+<!-- Body -->
+<main class="project-body">
+    <div class="container">
+
+        <!-- The setup -->
+        <section class="project-section" id="setup">
+            <h2 class="section-title">The setup</h2>
+            <p>
+                In late 2024, Intel was a $53 billion revenue company that looked like it was in terminal decline. The stock was trading near multi-decade lows. The foundry division had posted a $13.4 billion operating loss. AMD was eating server CPU market share. NVIDIA owned the AI accelerator market with over 80% share. Analysts were debating whether Intel should divest its foundry business entirely and retreat to a fabless model.
+            </p>
+            <p>
+                The financial picture was ugly, and the market consensus treated it as evidence that Intel was structurally broken. I disagreed.
+            </p>
+
+            <!-- FIGURE 1: Financial comparison table -->
+            <figure class="research-figure" id="figure-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company · FY2024</th>
+                            <th style="text-align:right">Revenue</th>
+                            <th style="text-align:right">Gross Margin</th>
+                            <th style="text-align:right">Net Income</th>
+                            <th style="text-align:right">R&amp;D Spend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td class="label">Intel</td>
+                            <td class="num">$53.1B</td>
+                            <td class="num">32.7%</td>
+                            <td class="num">−$19.2B</td>
+                            <td class="num">$16.5B</td>
+                        </tr>
+                        <tr>
+                            <td class="label">AMD</td>
+                            <td class="num">$25.8B</td>
+                            <td class="num">49.3%</td>
+                            <td class="num">$1.6B</td>
+                            <td class="num">$6.5B</td>
+                        </tr>
+                        <tr>
+                            <td class="label">NVIDIA</td>
+                            <td class="num">$130.5B</td>
+                            <td class="num">74.6%</td>
+                            <td class="num">$72.9B</td>
+                            <td class="num">$12.9B</td>
+                        </tr>
+                        <tr>
+                            <td class="label">TSMC</td>
+                            <td class="num">$90.0B</td>
+                            <td class="num">53.1%</td>
+                            <td class="num">$36.6B</td>
+                            <td class="num">$6.4B</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <figcaption class="figure-caption">
+                    <strong>Figure 1</strong>Comparative financial position of Intel and its primary competitors, fiscal year 2024. Intel's scale and R&amp;D intensity remained significant; the problem was not resource availability.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- The diagnosis -->
+        <section class="project-section" id="diagnosis">
+            <h2 class="section-title">The diagnosis</h2>
+            <p>
+                For our Harvard Business School strategic management course, I selected Intel as the analysis target and built the analytical frameworks: PESTEL, Porter's Five Forces, Valuable-Rare-Inimitable-Non-substitutable (VRIN) resource analysis, SOAR competitor profiles, weighted competitive strength assessment, and strategic group mapping across multiple dimensions. What emerged wasn't a story about a company that lacked the resources to compete. It was a story about a company that had every resource it needed and was failing to deploy them.
+            </p>
+            <p>
+                Intel had fabrication facilities that represented the only Western Integrated Device Manufacturer (IDM) operating at scale. It had $8.5 billion in CHIPS Act funding. It had x86 architecture intellectual property with over 90% PC market share. It had enterprise relationships built over decades. It had advanced packaging technology in EMIB and Foveros. It had a GPU in development. It had a foundry business with the potential to serve as a geopolitical hedge for every major chip designer concerned about Taiwan Strait risk.
+            </p>
+
+            <!-- FIGURE 2: VRIN table -->
+            <figure class="research-figure" id="figure-2">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th style="text-align:center">Valuable</th>
+                            <th style="text-align:center">Rare</th>
+                            <th style="text-align:center">Inimitable</th>
+                            <th style="text-align:center">Non-substitutable</th>
+                            <th>Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td class="label">Western IDM manufacturing at scale</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td>Sustained competitive advantage</td>
+                        </tr>
+                        <tr>
+                            <td class="label">x86 architecture IP</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="dash">—</td>
+                            <td>Temporary advantage (ARM substitution)</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Enterprise customer relationships</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td>Competitive parity eroding</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Advanced packaging (EMIB, Foveros)</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td>Competitive parity (TSMC CoWoS)</td>
+                        </tr>
+                        <tr>
+                            <td class="label">CHIPS Act funding</td>
+                            <td class="check">✓</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td>Competitive parity</td>
+                        </tr>
+                        <tr>
+                            <td class="label">GPU architecture (Arc, Gaudi)</td>
+                            <td class="check">✓</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td class="dash">—</td>
+                            <td>Below competitive parity</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <figcaption class="figure-caption">
+                    <strong>Figure 2</strong>VRIN analysis of Intel's resource portfolio. Only Western IDM manufacturing at scale met all four criteria for sustained competitive advantage — and it was the resource Intel was being advised to divest.
+                </figcaption>
+            </figure>
+
+            <p>
+                None of these resources were being coordinated. The business units operated as separate P&amp;Ls, each optimizing locally. The GPU effort was disconnected from the CPU franchise. The foundry was being treated as a cost center rather than a strategic asset. Intel was approaching AI as a product extension of CPUs when the opportunity required a platform play with tight hardware-software integration. That platform approach is exactly how NVIDIA built its dominance through Compute Unified Device Architecture (CUDA), developer tools, and ecosystem lock-in.
+            </p>
+
+            <!-- FIGURE 3: Strategic Group Map -->
+            <figure class="research-figure" id="figure-3">
+                <div class="svg-frame">
+                    <svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategic group map showing competitive positioning of Intel, AMD, NVIDIA, and TSMC across two dimensions: AI/general computing focus and cloud/edge focus">
+                        <!-- Background and grid -->
+                        <rect x="0" y="0" width="760" height="520" class="bg"/>
+
+                        <!-- Axes -->
+                        <line x1="90" y1="60" x2="90" y2="440" class="border" stroke-width="1.5"/>
+                        <line x1="90" y1="440" x2="700" y2="440" class="border" stroke-width="1.5"/>
+
+                        <!-- Grid lines -->
+                        <line x1="90" y1="250" x2="700" y2="250" class="grid-line" stroke-width="1" stroke-dasharray="2,4"/>
+                        <line x1="395" y1="60" x2="395" y2="440" class="grid-line" stroke-width="1" stroke-dasharray="2,4"/>
+
+                        <!-- Axis labels -->
+                        <text x="395" y="478" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="13" font-weight="500">Focus orientation</text>
+                        <text x="140" y="495" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11">Edge / client</text>
+                        <text x="650" y="495" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11">Cloud / data center</text>
+
+                        <text x="40" y="250" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="13" font-weight="500" transform="rotate(-90, 40, 250)">Compute specialization</text>
+                        <text x="68" y="90" text-anchor="end" class="muted" font-family="Outfit, sans-serif" font-size="11">AI-first</text>
+                        <text x="68" y="420" text-anchor="end" class="muted" font-family="Outfit, sans-serif" font-size="11">General</text>
+
+                        <!-- Bubbles (size = revenue, position = positioning) -->
+                        <!-- NVIDIA: cloud AI, largest -->
+                        <circle cx="600" cy="120" r="58" class="accent" opacity="0.25"/>
+                        <circle cx="600" cy="120" r="58" class="accent-stroke" stroke-width="2" fill="none"/>
+                        <text x="600" y="118" text-anchor="middle" class="ink" font-family="Outfit, sans-serif" font-size="15" font-weight="600">NVIDIA</text>
+                        <text x="600" y="136" text-anchor="middle" class="muted" font-family="JetBrains Mono, monospace" font-size="10">$130B</text>
+
+                        <!-- TSMC: cloud/edge foundry, general+AI -->
+                        <circle cx="520" cy="280" r="52" class="ink" opacity="0.15"/>
+                        <circle cx="520" cy="280" r="52" class="border" stroke-width="1.5" fill="none"/>
+                        <text x="520" y="278" text-anchor="middle" class="ink" font-family="Outfit, sans-serif" font-size="15" font-weight="600">TSMC</text>
+                        <text x="520" y="296" text-anchor="middle" class="muted" font-family="JetBrains Mono, monospace" font-size="10">$90B</text>
+
+                        <!-- Intel: edge-cloud transition, general computing -->
+                        <circle cx="340" cy="340" r="42" class="ink" opacity="0.15"/>
+                        <circle cx="340" cy="340" r="42" class="border" stroke-width="1.5" fill="none"/>
+                        <text x="340" y="338" text-anchor="middle" class="ink" font-family="Outfit, sans-serif" font-size="15" font-weight="600">Intel</text>
+                        <text x="340" y="356" text-anchor="middle" class="muted" font-family="JetBrains Mono, monospace" font-size="10">$53B</text>
+
+                        <!-- AMD: moving toward cloud+AI -->
+                        <circle cx="460" cy="200" r="32" class="ink" opacity="0.15"/>
+                        <circle cx="460" cy="200" r="32" class="border" stroke-width="1.5" fill="none"/>
+                        <text x="460" y="198" text-anchor="middle" class="ink" font-family="Outfit, sans-serif" font-size="14" font-weight="600">AMD</text>
+                        <text x="460" y="214" text-anchor="middle" class="muted" font-family="JetBrains Mono, monospace" font-size="9">$26B</text>
+
+                        <!-- Arrows indicating strategic direction -->
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" class="muted" fill="currentColor"/>
+                            </marker>
+                        </defs>
+                        <path d="M 390 340 Q 430 280 455 225" class="accent-stroke" stroke-width="1.5" fill="none" stroke-dasharray="4,4" marker-end="url(#arrow)" opacity="0.6"/>
+                        <text x="442" y="280" class="muted" font-family="Outfit, sans-serif" font-size="10" font-style="italic">where Intel</text>
+                        <text x="442" y="293" class="muted" font-family="Outfit, sans-serif" font-size="10" font-style="italic">needed to move</text>
+
+                        <!-- Legend -->
+                        <g transform="translate(90, 50)">
+                            <text x="0" y="0" class="muted" font-family="Outfit, sans-serif" font-size="10" font-weight="600" letter-spacing="0.08em">BUBBLE SIZE = FY2024 REVENUE</text>
+                        </g>
                     </svg>
-                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </div>
+                <figcaption class="figure-caption">
+                    <strong>Figure 3</strong>Strategic group map across two dimensions: focus orientation (edge/client vs. cloud/data center) and compute specialization (general-purpose vs. AI-first). NVIDIA had effectively won the cloud-AI quadrant through CUDA ecosystem lock-in. AMD was moving up-and-right. Intel was stranded in general-purpose edge/client territory without a credible path to where value was migrating.
+                </figcaption>
+            </figure>
+
+            <p>
+                The strategic group mapping made the positioning problem visible. Intel was poorly positioned to outcompete NVIDIA in AI training, a market locked up by CUDA ecosystem switching costs. But it was well-positioned for inference-heavy workloads in enterprise, hybrid, and edge environments, where cost-per-inference and deployment simplicity matter more than raw training throughput. Intel wasn't playing to its positioning. It was trying to compete head-to-head in a market where NVIDIA had already won.
+            </p>
+        </section>
+
+        <!-- What we recommended -->
+        <section class="project-section" id="recommendations">
+            <h2 class="section-title">What we recommended</h2>
+            <p>
+                The analysis identified three critical issues, but they all pointed to the same root cause: Intel's organizational architecture was preventing it from deploying its resources for competitive advantage.
+            </p>
+
+            <p>
+                <strong>First, on AI.</strong> Stop trying to out-train NVIDIA. Pivot to an inference-first strategy that leverages Intel's CPU footprint, enterprise relationships, and cost advantages. Build an integrated platform, not a standalone GPU product. The play is making AI practical and affordable for enterprises, not winning benchmark wars.
+            </p>
+
+            <p>
+                <strong>Second, on manufacturing.</strong> Do not divest the foundry. The foundry is Intel's only VRIN-qualified resource with potential sustained competitive advantage. Pour resources into getting 18A yields to industry standard levels: 70% by Q4 2025, 80% by Q4 2026, 85%+ by Q4 2027. Use the CHIPS Act funding to establish the foundry as the credible Western alternative to TSMC. This requires treating the foundry as a genuine service business with a hard separation between Intel's product divisions and foundry operations, so external customers trust that their designs won't be disadvantaged.
+            </p>
+
+            <p>
+                <strong>Third, on CPUs.</strong> Value is migrating from standalone components to system-level platforms. Intel needed to embed its CPUs into rack-scale solutions, establish multi-year platform commitments with key accounts, and raise switching costs through integration rather than contracts. The goal: zero cliff defections from major customers in a twelve to twenty-four month window.
+            </p>
+
+            <!-- FIGURE 4: Value Migration diagram -->
+            <figure class="research-figure" id="figure-4">
+                <div class="svg-frame">
+                    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Value migration diagram showing shift from CPU-dominated compute value to distributed value across accelerators, custom silicon, system integration, and foundry services">
+                        <rect x="0" y="0" width="760" height="420" class="bg"/>
+
+                        <!-- Title labels -->
+                        <text x="150" y="40" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11" font-weight="600" letter-spacing="0.1em">PRIOR ERA (2010–2018)</text>
+                        <text x="600" y="40" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11" font-weight="600" letter-spacing="0.1em">CURRENT ERA (2020–)</text>
+
+                        <!-- Old stack: CPU-dominated monolith -->
+                        <rect x="80" y="80" width="140" height="260" class="ink" opacity="0.08" rx="2"/>
+                        <rect x="80" y="80" width="140" height="260" class="border" stroke-width="1.5" fill="none" rx="2"/>
+                        <text x="150" y="215" text-anchor="middle" class="ink" font-family="Outfit, sans-serif" font-size="20" font-weight="600">CPU</text>
+                        <text x="150" y="240" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11">captures majority</text>
+                        <text x="150" y="255" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11">of compute value</text>
+
+                        <!-- Flow arrows -->
+                        <defs>
+                            <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" class="muted" fill="currentColor"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Arrows fanning out -->
+                        <path d="M 230 140 Q 320 140 440 105" class="muted" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5" marker-end="url(#arrow2)"/>
+                        <path d="M 230 180 Q 320 180 440 170" class="muted" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5" marker-end="url(#arrow2)"/>
+                        <path d="M 230 220 Q 320 220 440 235" class="muted" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5" marker-end="url(#arrow2)"/>
+                        <path d="M 230 260 Q 320 260 440 300" class="muted" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5" marker-end="url(#arrow2)"/>
+
+                        <!-- New stack: distributed value -->
+                        <g>
+                            <rect x="450" y="80" width="220" height="48" class="accent" opacity="0.25" rx="2"/>
+                            <rect x="450" y="80" width="220" height="48" class="accent-stroke" stroke-width="1.5" fill="none" rx="2"/>
+                            <text x="465" y="108" class="ink" font-family="Outfit, sans-serif" font-size="13" font-weight="600">AI accelerators</text>
+                            <text x="655" y="108" text-anchor="end" class="muted" font-family="JetBrains Mono, monospace" font-size="10">largest</text>
+                        </g>
+                        <g>
+                            <rect x="450" y="144" width="220" height="48" class="ink" opacity="0.12" rx="2"/>
+                            <rect x="450" y="144" width="220" height="48" class="border" stroke-width="1.5" fill="none" rx="2"/>
+                            <text x="465" y="172" class="ink" font-family="Outfit, sans-serif" font-size="13" font-weight="600">Custom silicon</text>
+                            <text x="655" y="172" text-anchor="end" class="muted" font-family="Outfit, sans-serif" font-size="10">hyperscalers</text>
+                        </g>
+                        <g>
+                            <rect x="450" y="208" width="220" height="48" class="ink" opacity="0.12" rx="2"/>
+                            <rect x="450" y="208" width="220" height="48" class="border" stroke-width="1.5" fill="none" rx="2"/>
+                            <text x="465" y="236" class="ink" font-family="Outfit, sans-serif" font-size="13" font-weight="600">System integration</text>
+                            <text x="655" y="236" text-anchor="end" class="muted" font-family="Outfit, sans-serif" font-size="10">rack-scale</text>
+                        </g>
+                        <g>
+                            <rect x="450" y="272" width="220" height="48" class="ink" opacity="0.12" rx="2"/>
+                            <rect x="450" y="272" width="220" height="48" class="border" stroke-width="1.5" fill="none" rx="2"/>
+                            <text x="465" y="300" class="ink" font-family="Outfit, sans-serif" font-size="13" font-weight="600">Foundry services</text>
+                            <text x="655" y="300" text-anchor="end" class="muted" font-family="Outfit, sans-serif" font-size="10">geopolitical</text>
+                        </g>
+
+                        <!-- CPU in shrunken form at bottom of new stack -->
+                        <rect x="450" y="336" width="220" height="32" class="ink" opacity="0.06" rx="2"/>
+                        <rect x="450" y="336" width="220" height="32" class="border" stroke-width="1" fill="none" rx="2" stroke-dasharray="3,3"/>
+                        <text x="560" y="356" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="11" font-style="italic">CPU — commoditized</text>
+
+                        <!-- Intel's positioning callout -->
+                        <text x="150" y="378" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="10" font-style="italic">Intel's strength:</text>
+                        <text x="150" y="393" text-anchor="middle" class="muted" font-family="Outfit, sans-serif" font-size="10" font-style="italic">the old stack</text>
+
+                        <text x="560" y="395" text-anchor="middle" class="accent" font-family="Outfit, sans-serif" font-size="10" font-weight="600" font-style="italic">Where value lives now</text>
                     </svg>
-                </button>
+                </div>
+                <figcaption class="figure-caption">
+                    <strong>Figure 4</strong>Value migration in compute. The old model captured compute value primarily in the CPU. The current model distributes value across AI accelerators, custom silicon from hyperscalers, system-level integration, and foundry services, leaving the standalone CPU commoditized. Intel's integrated position gave it structural access to multiple of the new value pools — if it could organize to capture them.
+                </figcaption>
+            </figure>
+
+            <p class="pull-quote">
+                When I presented this analysis in class, the question I got was: "Why aren't they doing this?" My answer was honest. I don't know. They have all the pieces. They're just choosing not to assemble them.
+            </p>
+        </section>
+
+        <!-- What actually happened -->
+        <section class="project-section" id="validation">
+            <h2 class="section-title">What actually happened</h2>
+
+            <div class="timing-note">
+                The analysis above was completed in January 2025 as Harvard Business School coursework using financial data through Q3 2024. At that point, Pat Gelsinger was still CEO, Lip-Bu Tan had not been named as his successor, and none of the organizational restructuring described below was public. The validation that follows is hindsight on that earlier diagnosis, not forward commentary.
             </div>
+
+            <p>
+                Pat Gelsinger departed in late 2024. Lip-Bu Tan, former CEO of Cadence Design Systems, took over as CEO in March 2025. What Tan did reads like a checklist of the structural changes our analysis had prescribed.
+            </p>
+
+            <p>
+                He flattened the organization. Teams that had been eight or more layers deep were compressed. Management layers were cut by roughly half. Key business units, including the Data Center Group, were moved to report directly to the CEO, removing the bureaucratic layers that had been slowing decision-making. He split the Data Center and AI Group into separate focused entities. He established a hard firewall between Intel Products and Intel Foundry, forcing the foundry to treat external customers with the same priority as internal ones.
+            </p>
+
+            <p>
+                He imposed capital discipline. Planned projects in Germany and Poland were killed. Ohio construction was slowed. The new rule: capacity gets added only when there are firm customer commitments to justify it. This was a direct inversion of the previous approach, which had spent $90 billion over four years building capacity without demand.
+            </p>
+
+            <p>
+                And on the foundry yield, the change was immediate and visible. When Tan arrived, 18A yield improvement was erratic and unpredictable. Within months, the improvement curve normalized to approximately 7% per month, which is the industry standard rate for a new node ramp. The technology didn't change. The organization around it did. An erratic yield curve on a new process is not a physics problem. It is a management problem: unclear ownership, competing priorities, resources being pulled in conflicting directions. Fix the organizational architecture, and the yield curve fixes itself.
+            </p>
+
+            <p>
+                18A entered high-volume manufacturing in October 2025. Panther Lake, Intel's first consumer processor built on 18A, shipped in January 2026, manufactured at Fab 52 in Chandler, Arizona. Early yields stabilized in the 60 to 75% range, which analysts described as commercially robust for a leading-edge process. Industry-standard yields above 85% are projected for early 2027.
+            </p>
+
+            <p>
+                In September 2025, NVIDIA invested $5 billion in Intel common stock at $23.28 per share, covering co-development of custom x86 CPUs and SoCs integrating NVIDIA RTX GPU chiplets. The U.S. government finalized an approximately 10% stake through the CHIPS Act, effectively giving Intel national champion status. SoftBank invested an additional $2 billion. Reports have emerged suggesting NVIDIA is exploring Intel Foundry for its 2028 Feynman-generation GPUs, though this remains unconfirmed.
+            </p>
+
+            <p>
+                To be clear about what the NVIDIA deal is and isn't: it is an equity investment and product co-development partnership. It is not yet a foundry manufacturing commitment. The "foundry as geopolitical hedge" thesis from our analysis is playing out through the government's stake and NVIDIA's equity bet, establishing Intel as the credible Western manufacturing alternative. Whether that translates into significant external foundry volume remains an open question that will likely be answered over the next eighteen to twenty-four months.
+            </p>
+
+            <p>
+                Intel's stock has recovered from the $17 to $18 range to over $50, reflecting renewed confidence in the turnaround. But the turnaround is still in progress. Gross margins remain compressed, free cash flow is negative, and the foundry has not yet reached breakeven. The trajectory has changed. The destination hasn't been reached.
+            </p>
+        </section>
+
+        <!-- What this demonstrates -->
+        <section class="project-section" id="conclusion">
+            <h2 class="section-title">What this actually demonstrates</h2>
+            <p>
+                This analysis was not a stock prediction. I did not move the market, and the strategy shift at Intel happened under new leadership making decisions based on their own assessment of the business. What the analysis demonstrates is a specific diagnostic capability: reading organizational failure modes that produce downstream technical and financial outcomes before those outcomes are fully visible in the financial statements.
+            </p>
+            <p>
+                The financial analysts were looking at Intel's income statement and seeing a broken business. The manufacturing yield data looked like a technology failure. The $13.4 billion foundry loss looked like a strategic mistake that should be unwound through divestiture. These were all reasonable conclusions from the financial data.
+            </p>
+            <p>
+                What the analysis saw was something different. An organizational architecture that was preventing a vertically integrated company from realizing its integration advantage. Siloed business units. No single owner of the manufacturing thesis. A foundry being evaluated as a cost center rather than a strategic asset. An AI approach that fragmented effort across disconnected products instead of building a coherent platform. An erratic yield improvement curve that indicated management dysfunction, not technology limitations.
+            </p>
+            <p>
+                Every major structural recommendation from the analysis is now Intel's stated strategy under Lip-Bu Tan. Organizational flattening. Foundry separation with external customer parity. Inference-first AI positioning. Capital discipline tied to customer commitments. Yield improvement through accountable execution rather than technology heroics.
+            </p>
+            <p class="thesis-held">The thesis held.</p>
+        </section>
+
+        <!-- Footer note -->
+        <section class="project-section" id="attribution" style="border-top: 1px solid var(--border-light, #ececea); padding-top: 2rem; margin-top: 3rem;">
+            <p style="font-size: 0.9rem; color: var(--text-muted, #666); font-style: italic;">
+                The full analysis was completed as part of Harvard Business School MGMT E-5000: Strategic Management, Professor Areen Shahbari, January 2025. Analytical frameworks and research by Alex Moroz-Smietana. Published January 2026.
+            </p>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/95835795" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/Alexyms" target="_blank" rel="noopener">GitHub</a>
         </div>
-    </nav>
+        <p class="footer-note">© 2026 Alex Moroz-Smietana</p>
+    </div>
+</footer>
 
-    <!-- Research Hero -->
-    <header class="project-hero">
-        <div class="container">
-            <a href="../#research" class="project-hero-back">&larr; Back to Research</a>
-            <h1 class="project-hero-title">Intel's Strategic Inflection Point</h1>
-            <p class="project-hero-summary">An analysis of Intel's competitive positioning, foundry strategy, and the structural challenges facing its IDM 2.0 transformation. Originally developed for Harvard Business School strategic management coursework, expanded here with additional figures and analysis.</p>
-            <p class="research-meta">Strategic Analysis &middot; January 2025</p>
-        </div>
-    </header>
+<script src="../js/main.js"></script>
 
-    <!-- Research Body -->
-    <main class="project-body">
-        <div class="container">
-
-            <!-- Content sections go here, using the same patterns as project pages -->
-            <section class="project-section" id="context">
-                <h2>Context</h2>
-                <p>Content goes here. Use the same .project-section, .figure, .callout, and paragraph patterns established in the project pages.</p>
-            </section>
-
-            <!-- Example section structure:
-            <section class="project-section" id="competitive-position">
-                <h2>Competitive Position</h2>
-                <p>Analysis text...</p>
-
-                <div class="figure">
-                    <img src="../assets/images/intel_market_share.png" alt="Intel market share trends">
-                    <p class="figure-caption">Figure 1: Intel's market share in server CPUs, 2019-2024</p>
-                </div>
-
-                <div class="callout">
-                    <p class="callout-title">Key Finding</p>
-                    <p>The insight or strategic observation goes here.</p>
-                </div>
-            </section>
-            -->
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <p class="footer-name">Alex Moroz-Smietana</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/95835795" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
-                    <a href="https://github.com/Alexyms" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/main.js"></script>
 </body>
 </html>
