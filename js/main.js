@@ -90,7 +90,7 @@
     }
 
     document.addEventListener('click', function(e) {
-        if (e.target.tagName === 'IMG' && e.target.closest('.figure')) {
+        if (e.target.tagName === 'IMG' && e.target.closest('.figure, .research-figure')) {
             open(e.target);
         }
     });

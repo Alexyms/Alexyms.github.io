@@ -782,7 +782,8 @@ a.project-card:hover .card-link {
    LIGHTBOX
    ============================================ */
 
-.figure img {
+.figure img,
+.research-figure img {
     cursor: pointer;
 }
 
