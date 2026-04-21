@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Strategic analysis of Intel's competitive positioning, foundry strategy, and organizational architecture. Diagnosis built for Harvard Business School Strategic Management coursework in January 2025; validated by subsequent organizational restructuring under Lip-Bu Tan.">
+    <meta name="description" content="Strategic analysis of Intel's competitive positioning, foundry strategy, and organizational architecture. Diagnosis built for Harvard Business School Strategic Management coursework in January 2026; validated by subsequent organizational restructuring under Lip-Bu Tan.">
     <title>Intel's Strategic Inflection Point | Alex Moroz-Smietana</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" href="../favicon.png">
@@ -172,6 +172,55 @@
             width: 100%;
             height: auto;
         }
+
+        /* Part dividers — make temporal structure visible */
+        .part-divider {
+            margin: 5rem 0 3rem 0;
+            padding: 2rem 0 1.5rem 0;
+            border-top: 1px solid var(--border, #d9d9d3);
+            border-bottom: 1px solid var(--border, #d9d9d3);
+            text-align: center;
+        }
+        .part-divider .part-label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted, #666);
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .part-divider .part-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 1.65rem;
+            color: var(--text, #1A1A18);
+            display: block;
+            letter-spacing: 0.01em;
+        }
+        .part-intro {
+            font-family: 'Literata', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text, #1A1A18);
+            margin: 0 0 2.5rem 0;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--accent, #2B5C3A);
+        }
+        @media (max-width: 640px) {
+            .part-divider {
+                margin: 3rem 0 2rem 0;
+                padding: 1.5rem 0 1rem 0;
+            }
+            .part-divider .part-title {
+                font-size: 1.35rem;
+            }
+            .part-intro {
+                font-size: 1rem;
+                padding-left: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -195,7 +244,7 @@
         <a href="../#research" class="back-link">← Back</a>
         <div class="hero-tag-row">
             <span class="card-tag">Strategic Analysis</span>
-            <span class="card-date">January 2025 · Published January 2026</span>
+            <span class="card-date">January 2026</span>
         </div>
         <h1 class="project-title">Intel's Strategic Inflection Point</h1>
         <p class="project-summary">
@@ -207,6 +256,12 @@
 <!-- Body -->
 <main class="project-body">
     <div class="container">
+
+        <!-- Part I divider -->
+        <div class="part-divider">
+            <span class="part-label">Part I &middot; January 2026</span>
+            <span class="part-title">The original diagnosis</span>
+        </div>
 
         <!-- The setup -->
         <section class="project-section" id="setup">
@@ -592,13 +647,17 @@
             </p>
         </section>
 
+        <!-- Part II divider -->
+        <div class="part-divider">
+            <span class="part-label">Part II &middot; April 2026</span>
+            <span class="part-title">Revisiting the analysis</span>
+        </div>
+
         <!-- What actually happened -->
         <section class="project-section" id="validation">
-            <h2 class="section-title">What actually happened</h2>
-
-            <div class="timing-note">
-                The analysis above was completed in January 2025 as Harvard Business School coursework using financial data through Q3 2024. At that point, Pat Gelsinger was still CEO, Lip-Bu Tan had not been named as his successor, and none of the organizational restructuring described below was public. The validation that follows is hindsight on that earlier diagnosis, not forward commentary.
-            </div>
+            <p class="part-intro">
+                The analysis above was completed in January 2026. It was written with the benefit of seeing Lip-Bu Tan's organizational moves already underway and the NVIDIA equity investment already announced &mdash; the diagnostic work was in recognizing that those moves, which the market was reading as tactical adjustments, were exactly the structural fixes Intel's vertically integrated position demanded. Since publication, additional external signals have continued to confirm the thesis. What follows is a revisit in light of those signals.
+            </p>
 
             <p>
                 Pat Gelsinger departed in late 2024. Lip-Bu Tan, former CEO of Cadence Design Systems, took over as CEO in March 2025. What Tan did reads like a checklist of the structural changes our analysis had prescribed.
@@ -658,7 +717,7 @@
         <!-- Footer note -->
         <section class="project-section" id="attribution" style="border-top: 1px solid var(--border-light, #ececea); padding-top: 2rem; margin-top: 3rem;">
             <p style="font-size: 0.9rem; color: var(--text-muted, #666); font-style: italic;">
-                The full analysis was completed as part of Harvard Business School MGMT E-5000: Strategic Management, Professor Areen Shahbari, January 2025. Analytical frameworks and research by Alex Moroz-Smietana. Published January 2026.
+                The full analysis was completed as part of Harvard Business School MGMT E-5000: Strategic Management, Professor Areen Shahbari, January 2026. Analytical frameworks and research by Alex Moroz-Smietana.
             </p>
         </section>
 
