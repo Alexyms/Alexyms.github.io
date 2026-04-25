@@ -181,6 +181,36 @@
             color: var(--accent, #2B5C3A);
             border-bottom-color: var(--accent, #2B5C3A);
         }
+
+        /* Q1 2026 update data table */
+        .q1-comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem 0;
+            font-family: 'Outfit', sans-serif;
+        }
+        .q1-comparison-table th,
+        .q1-comparison-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border, #d9d9d3);
+        }
+        .q1-comparison-table th {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted, #666);
+            border-bottom: 2px solid var(--border, #d9d9d3);
+        }
+        .q1-comparison-table td:first-child {
+            font-weight: 500;
+        }
+        .q1-comparison-table td:not(:first-child),
+        .q1-comparison-table th:not(:first-child) {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
     </style>
 </head>
 <body>
@@ -301,6 +331,92 @@
             </p>
             <p>
                 Both threads converge on roughly the same testing window: Q3 and Q4 2026 earnings should make each visible. That's when the revenue trajectory either validates the turnaround thesis or doesn't, and when the shape of Intel Foundry's customer base clarifies. I expect the answer to be visible by then.
+            </p>
+        </section>
+
+        <!-- Q1 2026 update -->
+        <section class="project-section" id="q1-2026-update">
+            <h2 class="section-title">Update: Q1 2026 results</h2>
+            <p style="font-style: italic; color: var(--text-muted, #666); margin-top: -0.5rem; margin-bottom: 2rem;">
+                April 24, 2026
+            </p>
+            <p>
+                Intel reported Q1 2026 results on April 23 &mdash; the day before this update. TSMC reported April 16. Both companies' numbers are in, and both threads I named in "What I'm watching" produced readable signals in their first earnings cycle.
+            </p>
+            <p>The headline numbers, side by side:</p>
+            <table class="q1-comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metric (Q1 2026)</th>
+                        <th>Intel</th>
+                        <th>TSMC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Revenue</td>
+                        <td>$13.6B</td>
+                        <td>$35.9B</td>
+                    </tr>
+                    <tr>
+                        <td>Revenue growth YoY</td>
+                        <td>+7%</td>
+                        <td>+40.6%</td>
+                    </tr>
+                    <tr>
+                        <td>GAAP gross margin</td>
+                        <td>39.4%</td>
+                        <td>66.2%</td>
+                    </tr>
+                    <tr>
+                        <td>GAAP operating margin</td>
+                        <td>&minus;23.1%</td>
+                        <td>58.1%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <strong>TSMC's 40.6% YoY growth is the most important number on this table, and it's not Intel's number.</strong> TSMC added roughly $10B of quarterly revenue YoY &mdash; a single quarter of growth larger than Intel Foundry's entire quarterly revenue. HPC was the engine, +20% just QoQ, now 61% of TSMC's mix. This is the AI infrastructure boom Intel admitted on its January 2026 earnings call that it had underforecast. TSMC is capturing it because they have the leading-edge capacity, the advanced packaging (CoWoS), and the customer trust. TSMC's full-year 2026 guidance is "above 30%" growth in USD, which would put them at roughly $150B for the year &mdash; about three times Intel's expected full-year revenue. That gap is what makes the foundry question urgent rather than academic: the missed-opportunity cost of Intel's AI underforecast isn't theoretical, it's $10B of growth per quarter showing up on a competitor's income statement.
+            </p>
+            <p>
+                <strong>On the AI thread, the demand admission was real and the supply constraint is biting.</strong> Intel's Data Center and AI segment delivered $5.1B in revenue, up 22% YoY &mdash; the strongest growth of any segment by a wide margin. Server ASPs increased 27% YoY, partly from premium product mix and partly from "demand-based pricing actions." Volume actually decreased 5% &mdash; Intel doesn't have enough product to meet the demand it now acknowledges. CEO Tan put it directly on the call: "the growing and essential role of the CPU in the AI era and unprecedented demand for silicon." This is the supply-can't-catch-demand picture I named as the testing question. The DCAI revenue growth confirms the AI thesis was the right diagnosis. Whether Intel can actually capture the demand depends on whether supply opens up through the second half of 2026, and Q2 guidance of $13.8&ndash;$14.8B suggests the trajectory is intact but constrained.
+            </p>
+            <p>
+                <strong>On the manufacturing thread, the partnership signals are stronger than the financials.</strong> Intel Foundry revenue grew 16% YoY to $5.4B, but the operating loss widened slightly to $2.4B (from $2.3B in Q1 2025). External revenue grew from $31M to $174M, but most of that delta is Altera transitioning to external-customer status after its September 2025 deconsolidation, not new fabless customer wins. The $5.4B headline is mostly Intel buying its own wafers from itself &mdash; internal product groups consuming more 18A wafers from Intel Foundry as Panther Lake and the new Xeon products ramp.
+            </p>
+            <p>
+                The financial picture obscures the more interesting structural shift. A foundry is fundamentally a fixed-cost manufacturing business &mdash; Intel has over $100B of property, plant, and equipment depreciating regardless of whether the fabs run at 50% or 95% utilization. The cost structure barely flexes with volume. The path to profitability is identical to the path Toyota walks when bringing a new plant online: fill the capacity, mature the yields, then volume becomes profitable. Intel Foundry's widening loss in Q1 2026 isn't a sign the strategy is failing &mdash; it's the cost of being early on the curve. Higher 18A wafer mix carries higher unit costs while yields are still maturing, which is exactly what happens during every node transition. The Q1 results explicitly attribute the wider loss to "an increased mix of higher cost wafers manufactured on our Intel 18A process node." That's the early-ramp tax, not a structural problem.
+            </p>
+            <p>
+                What matters more than the operating loss is the customer pipeline. Q1 2026 brought a notable cluster of partnership signals that weren't visible when I wrote the original analysis:
+            </p>
+            <ul style="margin: 1rem 0 1.5rem 1.5rem; line-height: 1.7;">
+                <li><strong>Google</strong> announced a multiyear collaboration deploying Intel Xeon processors across Google's AI workload-optimized instances, including co-development of custom ASIC infrastructure processing units (IPUs).</li>
+                <li><strong>NVIDIA</strong> selected Intel Xeon 6 as the host CPU for its DGX Rubin NVL8 systems, putting Intel at the center of NVIDIA's next-generation AI infrastructure stack.</li>
+                <li><strong>Intel joined the Terafab project</strong> with SpaceX, xAI, and Tesla &mdash; a structural bet by Elon Musk's companies and xAI on Intel as a manufacturing partner for next-generation AI compute.</li>
+                <li><strong>Intel and SambaNova</strong> announced a heterogeneous hardware blueprint combining GPUs, SambaNova RDUs, and Intel Xeon 6 processors.</li>
+                <li><strong>Penang, Malaysia assembly and test capacity expansion</strong> to support customer products amid rising packaging demand.</li>
+            </ul>
+            <p>
+                None of these are yet "18A volume commitments from major fabless customers" in the strict sense &mdash; they're CPU partnerships and ecosystem positioning, not foundry contracts. But they're the kind of relationships that produce foundry contracts downstream. The Terafab announcement specifically is a structural signal: when Musk's companies plus xAI choose Intel as the manufacturing partner for a new megafab project, they're betting on Intel's foundry trajectory at exactly the time the market is most uncertain about it.
+            </p>
+            <p>
+                The countervailing signal sits in Intel's forward-looking statements: Intel is now publicly acknowledging the possibility that they may "pause or discontinue our pursuit of Intel 14A and successor leading-edge process technologies if we are unable to secure sufficient committed demand for Intel 14A through product design wins with potential significant external customers and our Intel products roadmap." That's Intel itself naming the exact failure condition the original analysis raised &mdash; and naming a deadline pressure on the answer. The geopolitical hedge thesis is intact. The commercial-merit question now has a clock attached.
+            </p>
+            <p>
+                <strong>On the headline GAAP loss: it's an accounting story, not an operating one.</strong> Intel reported a $3.7B GAAP net loss and EPS of &minus;$0.73 for Q1 2026 &mdash; both worse than Q1 2025. The cause is a $3.9B non-cash goodwill impairment on Mobileye. This is worth understanding because the GAAP headline could mislead a casual reader into thinking the operating business worsened, when the opposite is true.
+            </p>
+            <p>
+                When Intel acquired Mobileye in 2017 for $15.3B, it paid significantly more than Mobileye's tangible assets were worth. The premium &mdash; what accountants call "goodwill" &mdash; sat on Intel's balance sheet as a placeholder for the strategic value Intel expected from synergies, market growth in autonomous driving, and so on. Companies are required to test goodwill annually, and if the acquired business is no longer worth what was paid for it, the difference must be written down. That's what Q1 2026 captured: Intel concluded Mobileye is worth $3.9B less on the books than its previous carrying value, citing Mobileye's declining market cap, increased uncertainty in the autonomous driving competitive landscape, and heightened geopolitical risk affecting Mobileye's Israel operations. The writedown is non-cash &mdash; Intel didn't lose $3.9B in cash, just reduced an accounting asset on the balance sheet. Operating cash flow was actually positive at $1.1B for the quarter. The honest read is that Intel overpaid for Mobileye in 2017 based on autonomous driving projections that haven't materialized. That admission is awkward, but it's about a 2017 acquisition decision, not about the current foundry/AI strategy.
+            </p>
+            <p>
+                Excluding the Mobileye writedown and other adjustments, Intel's non-GAAP operating margin was 12.3% and non-GAAP net income was $1.5B (up 156% YoY) &mdash; the strongest non-GAAP quarter in some time. Both views are accurate. The GAAP view captures the 2017 chickens coming home to roost. The non-GAAP view captures how the current operating business performed. The thesis tracks the latter.
+            </p>
+            <p>
+                <strong>Updated watch.</strong> The two-to-three earnings cycle window I named for thesis resolution is now compressing. Q1 2026 produced earlier-than-expected validation on the AI thread (DCAI +22%, Google and NVIDIA partnerships) and confirmed the demand admission was real. Q1 2026 did not produce 14A external customer commitments, and Intel is now publicly running a discontinuation clock &mdash; but the partnership pipeline (Google, NVIDIA, Terafab, SambaNova) is the leading indicator that suggests those commitments are being built, just not yet booked. The Q3/Q4 2026 earnings cycles I named as the testing window remain the right horizon, with one new dimension: TSMC's growth rate establishes the cost of waiting. Every quarter Intel doesn't capture AI-driven revenue growth, TSMC widens the structural gap. The turnaround thesis isn't binary anymore &mdash; it's about whether Intel can close enough of that gap fast enough to matter.
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted, #666); font-style: italic; margin-top: 2rem;">
+                Sources: Intel Q1 2026 Press Release and 10-Q (April 23, 2026), Intel Q1 2026 Earnings Call Prepared Remarks, TSMC Q1 2026 Earnings Release (April 16, 2026).
             </p>
         </section>
 
